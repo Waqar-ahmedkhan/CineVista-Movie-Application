@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* secondary  color 
+
+  *  6556CD
+
+  primery color 
+
+  * 1F1E24
+*/
+
+::-webkit-scrollbar {
+  background-color: #1F1E24;
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1F1E24;
+  scroll-behavior: smooth;
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #6556CD;
+  
+  border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
