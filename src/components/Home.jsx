@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "../utils/axios";
+import Loader from "./Loader";
 import Header from "./partials/Header";
 import HorizontialCart from "./partials/HorizontialCart";
 import Sidenav from "./partials/Sidenav";
@@ -54,6 +55,6 @@ export const HomePage = () => {
       </div>
     </>
   ) : (
-    <h1>Loading...</h1>
+    <Loader />
   );
 };
