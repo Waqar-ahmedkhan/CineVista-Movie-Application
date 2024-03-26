@@ -4,28 +4,28 @@ import { useNavigate } from "react-router-dom";
 import axios from "../utils/axios";
 import Loader from "./Loader";
 import Cards from "./partials/Cards";
-import DropDown1 from "./partials/DropDown1"; // Consider renaming DropDown1 for clarity
+import DropDown1 from "./partials/DropDown1";
 import Topnav from "./partials/Topnav";
 
-const Trending = () => {
+const Tv = () => {
   const navigate = useNavigate();
-  const [trending, setTrending] = useState([]);
-  const [category, setCategory] = useState("all");
-  const [duration, setDuration] = useState("week");
+  const [tv, setTv] = useState([]);
+  const [category, setCategory] = useState("popular");
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
-  (document.title = "CinéVista | Trending "), category.toUpperCase();
 
-  const getTrending = async () => {
+  document.title = "CinéVista | TV";
+
+  const getTv = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/trending/${category}/${duration}`, {
+      const response = await axios.get(`/tv/${category}`, {
         params: { page },
       });
       const { data } = response;
       if (data.results.length > 0) {
-        setTrending((prevTrending) => [...prevTrending, ...data.results]);
+        setTv((prevTv) => [...prevTv, ...data.results]);
         setPage((prevPage) => prevPage + 1);
       } else {
         setHasMore(false);
@@ -37,21 +37,21 @@ const Trending = () => {
     }
   };
 
-  const RefreshHandler = async () => {
-    if (trending.length === 0) {
-      getTrending();
+  const refreshHandler = async () => {
+    if (tv.length === 0) {
+      getTv();
     } else {
       setPage(1);
-      setTrending([]);
-      getTrending();
+      setTv([]);
+      getTv();
     }
   };
 
   useEffect(() => {
-    RefreshHandler();
-  }, [category, duration]); // Call RefreshHandler when category, duration,
+    refreshHandler();
+  }, [category]);
 
-  return trending.length > 0 ? (
+  return tv.length > 0 ? (
     <div className="px-[3%] w-full h-full">
       <div className="w-full flex items-center justify-between">
         <div className="min-w-fit">
@@ -60,7 +60,7 @@ const Trending = () => {
               onClick={() => navigate("/")}
               className="ri-arrow-left-line hover:text-[#6556CD]"
             ></i>{" "}
-            <span className="">Trending</span>
+            <span className="">TV</span>
           </h1>
         </div>
         <div className="w-full min-w-[70%]">
@@ -69,27 +69,21 @@ const Trending = () => {
 
         <div className="flex flex-row gap-3  overflow-hidden">
           <DropDown1
-            title={"Filter"}
-            options={["tv", "movie", "all"]}
+            title={"Category"}
+            options={["popular", "top_rated", "on_the_air", "airing_today"]}
             func={(e) => setCategory(e.target.value)}
             className="max-w-[10vh] p-2"
-          />
-          <DropDown1
-            className=""
-            title={"Duration"}
-            options={["day", "week"]}
-            func={(e) => setDuration(e.target.value)}
           />
         </div>
       </div>
 
       <InfiniteScroll
-        dataLength={trending.length} // Total number of items
-        next={getTrending} // Function to call when more data needs to be loaded
-        hasMore={hasMore} // Indicates whether there are more items to load
-        loader={<Loader />} // Loader component to display while loading more data
+        dataLength={tv.length}
+        next={getTv}
+        hasMore={hasMore}
+        loader={<Loader />}
       >
-        <Cards data={trending} />
+        <Cards data={tv} />
       </InfiniteScroll>
     </div>
   ) : (
@@ -97,4 +91,4 @@ const Trending = () => {
   );
 };
 
-export default Trending;
+export default Tv;

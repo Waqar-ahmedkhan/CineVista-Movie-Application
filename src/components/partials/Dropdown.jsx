@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 const Dropdown = ({ title, options, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(title);
 
   const handleOptionClick = (option) => {
-    setSelectedOption(option.toUpperCase()); // Convert option to uppercase
+    setSelectedOption(option); // Update selected option
     setIsOpen(false);
     onSelect(option); // Pass selected option back to parent component
   };
@@ -18,7 +18,7 @@ const Dropdown = ({ title, options, onSelect }) => {
             onClick={() => setIsOpen(!isOpen)}
             className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
           >
-            <span className="mr-1">{selectedOption || title}</span>
+            <span className="mr-1">{selectedOption}</span>
             <svg
               className={`fill-current h-4 w-4 transition-transform ${
                 isOpen ? "rotate-180" : ""
@@ -44,7 +44,7 @@ const Dropdown = ({ title, options, onSelect }) => {
                         : ""
                     } bg-gray-200 hover:bg-gray-400 py-2 px-4 block w-full whitespace-no-wrap`}
                   >
-                    {option.toUpperCase()}
+                    {option}
                   </button>
                 </li>
               ))}

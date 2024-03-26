@@ -21,23 +21,35 @@ const Sidenav = () => {
             <i className="ri-fire-fill hover:text-yellow-300 duration-200 "></i>{" "}
             Trending{" "}
           </Link>
-          <Link className="hover:bg-[#6556CD] hover:text-white text-lg rounded-lg duration-500 p-5 ">
+          <Link
+            to={"/popular"}
+            className="hover:bg-[#6556CD] hover:text-white text-lg rounded-lg duration-500 p-5 "
+          >
             {" "}
             <i className="ri-bar-chart-grouped-line hover:text-green-400 duration-200 "></i>{" "}
             Popular{" "}
           </Link>
 
-          <Link className="hover:bg-[#6556CD] hover:text-white text-lg rounded-lg duration-500 p-5 ">
+          <Link
+            to={"/movies"}
+            className="hover:bg-[#6556CD] hover:text-white text-lg rounded-lg duration-500 p-5 "
+          >
             {" "}
             <i className="ri-movie-line hover:text-red-400 duration-200"></i>{" "}
             Movies{" "}
           </Link>
-          <Link className="hover:bg-[#6556CD] hover:text-white text-lg rounded-lg duration-500 p-5 ">
+          <Link
+            to={"/tv"}
+            className="hover:bg-[#6556CD] hover:text-white text-lg rounded-lg duration-500 p-5 "
+          >
             {" "}
             <i className="ri-slideshow-2-fill hover:text-red-400 duration-200"></i>{" "}
             Tv Shows{" "}
           </Link>
-          <Link className="hover:bg-[#6556CD] hover:text-white text-lg rounded-lg duration-500 p-5 ">
+          <Link
+            to={"/people"}
+            className="hover:bg-[#6556CD] hover:text-white text-lg rounded-lg duration-500 p-5 "
+          >
             {" "}
             <i className="ri-team-line hover:text-yellow-200 duration-200 "></i>{" "}
             People{" "}

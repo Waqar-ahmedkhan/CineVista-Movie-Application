@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../index.css";
-import Dropdown from "./Dropdown";
 
 const HorizontalCart = ({ data }) => {
   const [filterOption, setFilterOption] = useState("all");
@@ -29,48 +28,35 @@ const HorizontalCart = ({ data }) => {
   });
 
   return (
-    <div className="w-full p-5">
-      <div className="pb-5 flex w-full">
-        <h1 className="text-3xl text-zinc-400 font-semibold">Trending</h1>
-
-        {/* Drop down */}
-        <Dropdown
-          title="Filter"
-          options={["tv", "movie", "all"]}
-          onSelect={setFilterOption}
-        />
-      </div>
-
-      <div className="w-full flex overflow-y-hidden bg-zinc-900 align-middle justify-center">
-        {filteredData.map((item, i) => (
-          <div key={i} className="min-w-[22%] mr-7 h-full">
-            <img
-              src={`https://image.tmdb.org/t/p/original${
-                item.backdrop_path || item.poster_path
-              }`}
-              alt={item.title}
-              className="w-full h-[50%] object-cover"
-            />
-            <div className="p-3 min-h-[20vh]">
-              <h1 className="text-zinc-200 font-semibold text-xl">
-                {item.name ||
-                  item.title ||
-                  item.original_name ||
-                  item.original_title}
-              </h1>
-              <p className="italic text-zinc-400 ">
-                {truncateText(
-                  item.overview ||
-                    item.description ||
-                    "not description available",
-                  13 // Limiting to 10 words
-                )}
-                ...<Link className="text-blue-400">more</Link>
-              </p>{" "}
-            </div>
+    <div className="w-full flex overflow-y-hidden bg-zinc-900 align-middle justify-center">
+      {filteredData.map((item, i) => (
+        <div key={i} className="min-w-[22%] mr-7 h-full">
+          <img
+            src={`https://image.tmdb.org/t/p/original${
+              item.backdrop_path || item.poster_path
+            }`}
+            alt={item.title}
+            className="w-full h-[50%] object-cover"
+          />
+          <div className="p-3 min-h-[20vh]">
+            <h1 className="text-zinc-200 font-semibold text-xl">
+              {item.name ||
+                item.title ||
+                item.original_name ||
+                item.original_title}
+            </h1>
+            <p className="italic text-zinc-400 ">
+              {truncateText(
+                item.overview ||
+                  item.description ||
+                  "not description available",
+                13 // Limiting to 10 words
+              )}
+              ...<Link className="text-blue-400">more</Link>
+            </p>{" "}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };
