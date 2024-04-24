@@ -70,7 +70,7 @@ const Trending = () => {
         <div className="flex flex-row gap-3  overflow-hidden">
           <DropDown1
             title={"Filter"}
-            options={["tv", "movie", "all"]}
+            options={["all", "movie", "tv"]}
             func={(e) => setCategory(e.target.value)}
             className="max-w-[10vh] p-2"
           />
@@ -89,7 +89,7 @@ const Trending = () => {
         hasMore={hasMore} // Indicates whether there are more items to load
         loader={<Loader />} // Loader component to display while loading more data
       >
-        <Cards data={trending} />
+        <Cards data={trending} title={category} />
       </InfiniteScroll>
     </div>
   ) : (

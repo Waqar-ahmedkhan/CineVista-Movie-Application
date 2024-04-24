@@ -59,6 +59,7 @@ const Topnav = () => {
             </p>
           ) : (
             <Link
+              to={`/${search.media_type}/details/${search.id}`}
               key={index}
               className="w-[100%] hover:text-black duration-300 hover:bg-zinc-300 text-zinc-600 font-semibold flex justify-start items-center p-8 bg-zinc-200 border-b-2 border-zinc-100"
             >

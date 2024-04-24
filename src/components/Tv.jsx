@@ -83,7 +83,7 @@ const Tv = () => {
         hasMore={hasMore}
         loader={<Loader />}
       >
-        <Cards data={tv} />
+        <Cards data={tv} title="tv" />
       </InfiniteScroll>
     </div>
   ) : (

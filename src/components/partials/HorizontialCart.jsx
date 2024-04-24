@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import noimg from "../../../public/no.jpg";
 import "../../index.css";
 
 const HorizontalCart = ({ data }) => {
@@ -28,15 +29,23 @@ const HorizontalCart = ({ data }) => {
   });
 
   return (
-    <div className="w-full flex overflow-y-hidden bg-zinc-900 align-middle justify-center">
+    <div className="w-full flex overflow-y-hidden  align-middle justify-center">
       {filteredData.map((item, i) => (
-        <div key={i} className="min-w-[22%] mr-7 h-full">
+        <Link
+          to={`/${item.media_type}/details/${item.id}`}
+          key={i}
+          className="min-w-[22%] mr-7 h-full"
+        >
           <img
-            src={`https://image.tmdb.org/t/p/original${
+            src={
               item.backdrop_path || item.poster_path
-            }`}
+                ? `https://image.tmdb.org/t/p/original${
+                    item.backdrop_path || item.poster_path
+                  }`
+                : noimg
+            }
             alt={item.title}
-            className="w-full h-[50%] object-cover"
+            className="w-full h-[35vh] object-cover"
           />
           <div className="p-3 min-h-[20vh]">
             <h1 className="text-zinc-200 font-semibold text-xl">
@@ -55,7 +64,7 @@ const HorizontalCart = ({ data }) => {
               ...<Link className="text-blue-400">more</Link>
             </p>{" "}
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import noimg from "../../../public/no.jpg";
 
 const Cards = ({ data, title, onSelect }) => {
   return (
@@ -7,16 +8,23 @@ const Cards = ({ data, title, onSelect }) => {
       {data.map((card, index) => (
         <Link
           key={index}
-          to={`/${card.id}`}
+          to={`/${card.media_type || title}/details/${card.id}`}
           className="w-[35vh] m-[3%] relative"
         >
           <img
-            src={`https://image.tmdb.org/t/p/original${
+            src={
               card.poster_path ||
               card.backdrop_path ||
               card.img_path ||
               card.profile_path
-            }`}
+                ? `https://image.tmdb.org/t/p/original${
+                    card.poster_path ||
+                    card.backdrop_path ||
+                    card.img_path ||
+                    card.profile_path
+                  }`
+                : noimg
+            }
             alt={card.name}
             className="h-[40vh] w-full shadow-[8px_17px_38px_2px_rgba(0,0,0,.5)]"
           />
