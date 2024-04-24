@@ -40,7 +40,13 @@ const Header = ({ data }) => {
             data.overview || data.description || "not description available",
             80
           )}
-          ...<Link className="text-blue-400">more</Link>
+          ...
+          <Link
+            to={`${data.media_type}/details/${data.id}`}
+            className="text-blue-400"
+          >
+            more
+          </Link>
         </p>
         <div className="flex flex-row gap-3">
           <p className="font-semibold italic font-mono text-white">
@@ -59,8 +65,12 @@ const Header = ({ data }) => {
             {data.media_type.toUpperCase()}
           </p>
         </div>
-        <Link className="p-4  bg-[#6556CD] font-semibold rounded-lg mt-5">
-          Watch Trailer
+        <Link
+          to={`${data.media_type}/details/${data.id}/trailer`}
+          className="p-5   bg-[#6556CD] font-semibold rounded-lg "
+        >
+          <i className="ri-play-fill pr-2"></i>
+          Play Trailer
         </Link>
       </div>
     </div>

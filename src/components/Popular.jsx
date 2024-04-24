@@ -83,7 +83,7 @@ const Populer = () => {
         hasMore={hasMore} // Indicates whether there are more items to load
         loader={<Loader />} // Loader component to display while loading more data
       >
-        <Cards data={popular} />
+        <Cards data={popular} title={category} />
       </InfiniteScroll>
     </div>
   ) : (

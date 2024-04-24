@@ -58,11 +58,11 @@ export const HomePage = () => {
           {/* Drop down */}
           <DropDown1
             title="Filter"
-            options={["tv", "movie", "all"]}
+            options={["all", "movie", "tv"]}
             func={(e) => setcategory(e.target.value)}
           />
         </div>
-        <HorizontialCart data={trending} />
+        <HorizontialCart data={trending} title={category} />
       </div>
     </>
   ) : (
